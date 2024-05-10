@@ -67,6 +67,7 @@ dependencies {
     implementation(libs.ok.http)
     implementation(libs.ok.http.logging.interceptor)
     implementation(libs.hilt.android.navigation.compose)
+    implementation(libs.rendering)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

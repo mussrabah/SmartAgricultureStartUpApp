@@ -1,17 +1,18 @@
 [versions]
-agp = "8.3.2"
+agp = "8.4.0"
 hiltAndroid = "2.51.1"
 kotlin = "1.9.0"
-coreKtx = "1.13.0"
+coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
 lifecycleRuntimeKtx = "2.7.0"
 activityCompose = "1.9.0"
-composeBom = "2024.04.01"
+composeBom = "2024.05.00"
 retrofitVersion = "2.11.0"
 okHttpVersion = "5.0.0-alpha.14"
 hiltNavCompose = "1.2.0"
+rendering = "1.17.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -35,6 +36,7 @@ retrofit = {group = "com.squareup.retrofit2", name = "retrofit", version.ref = "
 moshi-converter = {group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofitVersion"}
 ok-http = {group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okHttpVersion"}
 ok-http-logging-interceptor = {group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okHttpVersion"}
+rendering = { group = "com.google.ar.sceneform", name = "rendering", version.ref = "rendering" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
