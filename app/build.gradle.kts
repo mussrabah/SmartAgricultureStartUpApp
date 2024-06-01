@@ -81,4 +81,7 @@ dependencies {
 // Allow references to generated code
 kapt {
     correctErrorTypes = true
+    arguments {
+        arg("jdk.compiler.args", "--add-exports=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED")
+    }
 }

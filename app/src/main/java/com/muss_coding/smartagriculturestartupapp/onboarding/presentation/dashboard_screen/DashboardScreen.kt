@@ -25,10 +25,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.muss_coding.smartagriculturestartupapp.R
 import com.muss_coding.smartagriculturestartupapp.onboarding.presentation.dashboard_screen.components.ControlCard
 import com.muss_coding.smartagriculturestartupapp.onboarding.presentation.dashboard_screen.components.MainInfoCard
 import com.muss_coding.smartagriculturestartupapp.onboarding.presentation.dashboard_screen.components.MonitoringCard
@@ -42,6 +44,7 @@ fun DashboardScreen(
     viewModel: DashboardViewModel = hiltViewModel()
 ) {
     val state = viewModel.state
+
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -56,10 +59,10 @@ fun DashboardScreen(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Text(text = "Hello,")
+            Text(text = stringResource(R.string.hello))
             Icon(
                 imageVector = Icons.Default.AccountCircle,
-                contentDescription = "Account Button",
+                contentDescription = stringResource(R.string.account_button_icon),
                 modifier = Modifier.size(30.dp)
             )
         }
@@ -71,12 +74,12 @@ fun DashboardScreen(
         )
 
         MainInfoCard(
-            title = "Smart Agriculture",
+            title = stringResource(R.string.app_title),
             date = state.lastUpdated.toString(),
         )
 
         Text(
-            text = "Monitoring",
+            text = stringResource(R.string.monitoring),
             style = MaterialTheme.typography.labelLarge,
             fontWeight = FontWeight.Bold,
             fontSize = 24.sp
@@ -103,7 +106,7 @@ fun DashboardScreen(
         }
 
         Text(
-            text = "Control",
+            text = stringResource(R.string.control),
             style = MaterialTheme.typography.labelLarge,
             fontWeight = FontWeight.Bold,
             fontSize = 24.sp

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">SmartAgricultureStartUpApp</string>
+    <string name="hello">Hello,</string>
+    <string name="account_button_icon">Account Button</string>
+    <string name="app_title">Smart Agriculture</string>
+    <string name="monitoring">Monitoring</string>
+    <string name="control">Control</string>
 </resources>
