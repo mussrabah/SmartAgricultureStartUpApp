@@ -124,8 +124,8 @@ fun DashboardScreen(
         var isWaterPumping by remember {
             mutableStateOf(false)
         }
-        var sprinkling = "Sprinkling"
-        var watering = "Watering"
+        val sprinkling = "Sprinkling"
+        val watering = "Watering"
 
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
