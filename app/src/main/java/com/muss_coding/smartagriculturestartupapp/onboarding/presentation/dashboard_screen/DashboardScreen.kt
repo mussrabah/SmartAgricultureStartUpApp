@@ -1,5 +1,6 @@
 package com.muss_coding.smartagriculturestartupapp.onboarding.presentation.dashboard_screen
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,6 +14,7 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -116,6 +118,15 @@ fun DashboardScreen(
             mutableStateOf(false)
         }
 
+        var isSprinkling by remember {
+            mutableStateOf(false)
+        }
+        var isWaterPumping by remember {
+            mutableStateOf(false)
+        }
+        var sprinkling = "Sprinkling"
+        var watering = "Watering"
+
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
             verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -135,7 +146,26 @@ fun DashboardScreen(
                     //controlParameters[index] = item.copy(isItSelected = it)
                     //isItSelected = it
                     viewModel.onEvent(DashboardEvents.OnUpdateControlToggle(index, it))
+                    when(index) {
+                        0 -> {
+                            isSprinkling = it
+                        }
+                        1 -> {
+                            isWaterPumping = it
+                        }
+                    }
                 }
+            }
+
+        }
+        AnimatedVisibility(isSprinkling) {
+            Button(onClick = { /*TODO*/ }, modifier = Modifier.fillMaxWidth()) {
+                Text(text = sprinkling)
+            }
+        }
+        AnimatedVisibility(isWaterPumping) {
+            Button(onClick = { /*TODO*/ }, modifier = Modifier.fillMaxWidth()) {
+                Text(text = watering)
             }
         }
     }
