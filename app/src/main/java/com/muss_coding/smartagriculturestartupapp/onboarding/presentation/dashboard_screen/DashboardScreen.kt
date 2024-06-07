@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.itemsIndexed
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material3.Button
@@ -24,6 +26,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -34,6 +37,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.muss_coding.smartagriculturestartupapp.R
 import com.muss_coding.smartagriculturestartupapp.onboarding.presentation.dashboard_screen.components.ControlCard
+import com.muss_coding.smartagriculturestartupapp.onboarding.presentation.dashboard_screen.components.GridWithCards
 import com.muss_coding.smartagriculturestartupapp.onboarding.presentation.dashboard_screen.components.MainInfoCard
 import com.muss_coding.smartagriculturestartupapp.onboarding.presentation.dashboard_screen.components.MonitoringCard
 import com.muss_coding.smartagriculturestartupapp.onboarding.presentation.dashboard_screen.utils.controlParameters
@@ -51,7 +55,8 @@ fun DashboardScreen(
         modifier = modifier
             .fillMaxSize()
             .background(background)
-            .padding(16.dp),
+            .padding(16.dp)
+            .verticalScroll(state = rememberScrollState()),
         horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.spacedBy(5.dp)
     ) {
@@ -87,25 +92,29 @@ fun DashboardScreen(
             fontSize = 24.sp
         )
 
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(2),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-            horizontalArrangement = Arrangement.spacedBy(10.dp)
-        ) {
-            itemsIndexed(monitoringParameters) { index, item ->
-                MonitoringCard(
-                    title = item.title,
-                    icon = painterResource(id = item.icon),
-                    info = when(index) {
-                        0 -> state.waterTemperature
-                        1 -> state.waterPh
-                        2 -> state.soilMoisture
-                        3 -> state.waterLevel
-                        else -> ""
-                    }.toString()
-                )
-            }
-        }
+        val sizePerRow = 2
+
+        GridWithCards(
+            sizePerRow = sizePerRow,
+            cards = monitoringParameters.mapIndexed()
+            { index, item ->
+                {
+                    MonitoringCard(
+                        modifier = Modifier.weight(1f),
+                        title = item.title,
+                        icon = painterResource(id = item.icon),
+                        info = when (index) {
+                            0 -> state.waterTemperature
+                            1 -> state.waterPh
+                            2 -> state.soilMoisture
+                            3 -> state.waterLevel
+                            else -> ""
+                        }.toString()
+                    )
+                }
+            },
+            state = state
+        )
 
         Text(
             text = stringResource(R.string.control),
@@ -114,58 +123,36 @@ fun DashboardScreen(
             fontSize = 24.sp
         )
 
-        var isItSelected by remember {
-            mutableStateOf(false)
-        }
 
-        var isSprinkling by remember {
-            mutableStateOf(false)
-        }
-        var isWaterPumping by remember {
-            mutableStateOf(false)
-        }
-        val sprinkling = "Sprinkling"
-        val watering = "Watering"
-
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(2),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-            horizontalArrangement = Arrangement.spacedBy(10.dp)
-        ) {
-            itemsIndexed(controlParameters) { index, item ->
-                isItSelected = item.isItSelected
-                ControlCard(
-                    title = item.title,
-                    icon = painterResource(id = item.icon),
-                    isItSelected = when(index) {
-                        0 -> state.isSprinklingChecked
-                        1 -> state.isWateringChecked
-                        else -> false
-                    }
-                ) {
-                    //controlParameters[index] = item.copy(isItSelected = it)
-                    //isItSelected = it
-                    viewModel.onEvent(DashboardEvents.OnUpdateControlToggle(index, it))
-                    when(index) {
-                        0 -> {
-                            isSprinkling = it
+        GridWithCards(
+            sizePerRow = sizePerRow,
+            cards = controlParameters.mapIndexed()
+            {index, item ->
+                {
+                    ControlCard(
+                        modifier = Modifier.weight(1f),
+                        title = item.title,
+                        icon = painterResource(id = item.icon),
+                        isItSelected = when(index) {
+                            0 -> state.isSprinklingChecked
+                            1 -> state.isWateringChecked
+                            else -> false
                         }
-                        1 -> {
-                            isWaterPumping = it
-                        }
+                    ) {
+                        viewModel.onEvent(DashboardEvents.OnUpdateControlToggle(index, it))
                     }
                 }
-            }
-
-        }
-        AnimatedVisibility(isSprinkling) {
+            },
+            state = state
+        )
+        AnimatedVisibility(state.isSprinklingChecked) {
             Button(onClick = { /*TODO*/ }, modifier = Modifier.fillMaxWidth()) {
-                Text(text = sprinkling)
+                Text(text = "Sprinkling")
             }
         }
-        AnimatedVisibility(isWaterPumping) {
+        AnimatedVisibility(state.isWateringChecked) {
             Button(onClick = { /*TODO*/ }, modifier = Modifier.fillMaxWidth()) {
-                Text(text = watering)
+                Text(text = "Watering")
             }
         }
     }

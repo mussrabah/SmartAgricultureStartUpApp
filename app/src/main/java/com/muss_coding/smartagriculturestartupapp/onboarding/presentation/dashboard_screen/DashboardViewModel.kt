@@ -5,15 +5,16 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.muss_coding.smartagriculturestartupapp.onboarding.domain.use_case.GetDateUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import java.time.LocalDateTime
 import javax.inject.Inject
 
 @HiltViewModel
-class DashboardViewModel @Inject constructor(): ViewModel() {
-    private val lastUpdated = LocalDateTime.now()
-    var state by mutableStateOf(DashboardState(userName = "Imad"))
+class DashboardViewModel @Inject constructor(
+    private val getDateUseCase: GetDateUseCase
+): ViewModel() {
+    var state by mutableStateOf(DashboardState(userName = "Imad", lastUpdated = getDateUseCase()))
 
     /*private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()*/
