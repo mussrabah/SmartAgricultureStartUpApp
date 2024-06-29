@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.muss_coding.smartagriculturestartupapp" />
+                  <option name="mobileSdkAppId" value="1:511903407805:android:023d1adcbb64d7d345e1d4" />
+                  <option name="projectId" value="smartagriculture-3ceb3" />
+                  <option name="projectNumber" value="511903407805" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

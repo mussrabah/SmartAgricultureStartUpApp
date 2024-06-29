@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:backgroundTint="@color/cl_black"
+    android:padding="20dp"
+    tools:context=".AskQuestion">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="Ask Question"
+        android:textColor="@color/cl_green"
+        android:textSize="30dp"
+        android:textAlignment="center"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/logo" />
+
+    <EditText
+        android:id="@+id/questionInput"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:hint="Enter your question"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:padding="10dp"
+        android:background="@drawable/input_border"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/submitQuestionButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="Ask Question"
+        android:background="@color/cl_green"
+        android:textColor="@color/white"
+        android:padding="10dp"
+        android:textSize="16sp" />
+</LinearLayout>

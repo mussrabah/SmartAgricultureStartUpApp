@@ -3,7 +3,10 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     //id("com.google.dagger.hilt.android")
     alias(libs.plugins.hiltAndroidPlugin)
-    id("kotlin-kapt")
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.googleGmsGoogleServices)
+    //id("kotlin-kapt")
+
 }
 
 android {
@@ -64,10 +67,14 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.retrofit)
     implementation(libs.moshi.converter)
+    implementation(libs.moshi.kotlin)
     implementation(libs.ok.http)
     implementation(libs.ok.http.logging.interceptor)
     implementation(libs.hilt.android.navigation.compose)
     implementation(libs.rendering)
+    implementation(project(":soil_type"))
+    implementation(project(":soil_type"))
+    implementation(project(":crop_recommendation"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -76,12 +83,24 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
+    ksp(libs.hilt.android.compiler)
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.google.play.services)
+    implementation("com.google.accompanist:accompanist-permissions:0.31.5-beta")
+
+    implementation("com.google.firebase:firebase-auth-ktx:23.0.0")
+    implementation("com.google.android.gms:play-services-auth:21.2.0")
+    implementation(platform("com.google.firebase:firebase-bom:33.1.1"))
+
+    implementation(libs.coil.compose)
+
 }
 // Allow references to generated code
-kapt {
-    correctErrorTypes = true
-    arguments {
-        arg("jdk.compiler.args", "--add-exports=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED")
-    }
-}
+//kapt {
+//    correctErrorTypes = true
+//    arguments {
+//        arg("jdk.compiler.args", "--add-exports=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED")
+//    }
+//}

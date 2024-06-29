@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "511903407805",
+    "project_id": "smartagriculture-3ceb3",
+    "storage_bucket": "smartagriculture-3ceb3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:511903407805:android:023d1adcbb64d7d345e1d4",
+        "android_client_info": {
+          "package_name": "com.muss_coding.smartagriculturestartupapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "511903407805-8to6u5sh2jsma3759ikavl7js7551014.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.muss_coding.smartagriculturestartupapp",
+            "certificate_hash": "682bd470782c7a56333e6476d3e8bbb880fef07f"
+          }
+        },
+        {
+          "client_id": "511903407805-70s5c55n2du7pvp0e7dmhlg6fvicsb3p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDw0I7LZ9-B9K2HmKtvYX7SBVIzE8fLbg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "511903407805-70s5c55n2du7pvp0e7dmhlg6fvicsb3p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

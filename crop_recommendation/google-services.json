@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "946365318754",
+    "project_id": "project-edi-e9508",
+    "storage_bucket": "project-edi-e9508.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:946365318754:android:caf6553b7c48d04c86333b",
+        "android_client_info": {
+          "package_name": "com.example.edi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJhdIHj5FUS9oJeaZeN_mmaWh9Q-I9WKM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

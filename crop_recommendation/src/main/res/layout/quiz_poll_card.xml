@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/quizCard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:background="@drawable/edittext_background"
+    app:cardCornerRadius="15dp"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <!-- Question -->
+    <TextView
+        android:id="@+id/questionTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/secondary_white"
+        android:text="Is the crop feasible for your field?"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
+
+    <!-- Poll Results -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="8dp">
+
+        <!-- Yes Poll -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Yes"
+            android:textColor="@color/secondary_white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <ProgressBar
+            android:id="@+id/yesProgressBar"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:progress="70"
+            android:max="100"
+            android:progressTint="@color/cl_faint_green" />
+
+        <TextView
+            android:id="@+id/yesVotesTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="7 out of 10"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp"
+            android:layout_marginBottom="4dp"/>
+
+        <!-- No Poll -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No"
+            android:textColor="@color/secondary_white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <ProgressBar
+            android:id="@+id/noProgressBar"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:progress="60"
+            android:max="100"
+            android:progressTint="@color/cl_faint_green" />
+
+        <TextView
+            android:id="@+id/noVotesTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3 out of 10"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp"
+            android:layout_marginBottom="4dp"/>
+    </LinearLayout>
+
+    <!-- Reason -->
+    <TextView
+        android:id="@+id/reasonEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Reason (Optional)"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="14sp"
+        android:layout_marginTop="12dp"/>
+
+    <!-- Button to Check Model Generated Report -->
+</LinearLayout>

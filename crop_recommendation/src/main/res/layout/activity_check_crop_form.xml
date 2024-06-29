@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cl_black"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".CheckCropForm">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Put you field data"
+                android:textColor="@color/cl_green"
+                android:textSize="30dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="The complete process will take 5 working days. But right now immidietly you can check our model predictions. "
+                    android:textColor="@color/cl_faint_green"
+                    android:textSize="17dp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/nValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittext_background"
+                    android:fontFamily="@font/poppins_medium"
+                    android:hint="Enter Nitrogen Reading"
+                    android:inputType="number"
+                    android:padding="15dp"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="16dp" />
+
+                <EditText
+                    android:id="@+id/pValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/edittext_background"
+                    android:fontFamily="@font/poppins_medium"
+                    android:hint="Enter Phosphorous Reading"
+                    android:inputType="number"
+                    android:padding="15dp"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="16dp" />
+
+                <EditText
+                    android:id="@+id/kValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/edittext_background"
+                    android:fontFamily="@font/poppins_medium"
+                    android:hint="Enter Pottasium Reading"
+                    android:inputType="number"
+                    android:padding="15dp"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="16dp" />
+
+                <EditText
+                    android:id="@+id/tempValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/edittext_background"
+                    android:fontFamily="@font/poppins_medium"
+                    android:hint="Enter temperature"
+                    android:inputType="numberDecimal"
+                    android:padding="15dp"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="16dp" />
+
+                <EditText
+                    android:id="@+id/humidityValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/edittext_background"
+                    android:fontFamily="@font/poppins_medium"
+                    android:hint="Enter humidity"
+                    android:inputType="numberDecimal"
+                    android:padding="15dp"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="16dp" />
+
+                <EditText
+                    android:id="@+id/phValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/edittext_background"
+                    android:fontFamily="@font/poppins_medium"
+                    android:hint="Enter PH Value"
+                    android:inputType="numberDecimal"
+                    android:padding="15dp"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="16dp" />
+
+                <EditText
+                    android:id="@+id/rainfallValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/edittext_background"
+                    android:fontFamily="@font/poppins_medium"
+                    android:hint="Enter Rainfall Amount"
+                    android:inputType="numberDecimal"
+                    android:padding="15dp"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="16dp" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_sign_up"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/edittext_background"
+                android:backgroundTint="@null"
+                android:fontFamily="@font/poppins_semibold"
+                android:padding="10dp"
+                android:text="Check"
+                android:textAllCaps="false"
+                android:textSize="17dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_thin"
+                    android:gravity="center"
+                    android:text="How it works ?"
+                    android:textColor="@color/white"
+                    android:textSize="15dp" />
+
+<!--                <TextView-->
+<!--                    android:id="@+id/btnLogin"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:fontFamily="@font/poppins_semibold"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="LOGIN"-->
+<!--                    android:textColor="@color/cl_green"-->
+<!--                    android:textSize="15dp" />-->
+
+
+            </LinearLayout>
+
+
+            <!-- ProgressBar -->
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="gone" />
+        </LinearLayout>
+
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</LinearLayout>

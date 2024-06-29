@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/quizCard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:background="@drawable/edittext_background"
+    app:cardCornerRadius="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <!-- Question -->
+            <TextView
+                android:id="@+id/questionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/secondary_white"
+                android:text="Is the crop feasible for your field?"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textAlignment="center"/>
+
+            <!-- Buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="8dp">
+
+                <Button
+                    android:id="@+id/yesButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Yes" />
+
+                <Button
+                    android:id="@+id/noButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="No" />
+            </LinearLayout>
+
+            <!-- Reason -->
+            <EditText
+                android:id="@+id/reasonEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Reason (Optional)"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>

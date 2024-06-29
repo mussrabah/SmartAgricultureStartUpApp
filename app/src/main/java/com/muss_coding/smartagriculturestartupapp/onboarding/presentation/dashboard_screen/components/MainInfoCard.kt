@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -33,7 +34,8 @@ fun MainInfoCard(
     modifier: Modifier = Modifier,
     title: String,
     date: String,
-    background: Color = MaterialTheme.colorScheme.primaryContainer
+    background: Color = MaterialTheme.colorScheme.primaryContainer,
+    isLoading: Boolean
 ) {
     Column(
         modifier = modifier
@@ -76,11 +78,15 @@ fun MainInfoCard(
                         modifier = Modifier.size(50.dp),
                         tint = MaterialTheme.colorScheme.onPrimaryContainer
                     )
-                    Text(
-                        text = date,
-                        style = MaterialTheme.typography.bodyMedium,
-                        fontSize = 16.sp
-                    )
+                    if (isLoading) {
+                        CircularProgressIndicator()
+                    } else {
+                        Text(
+                            text = date,
+                            style = MaterialTheme.typography.bodyMedium,
+                            fontSize = 16.sp
+                        )
+                    }
                 }
             }
             Box(

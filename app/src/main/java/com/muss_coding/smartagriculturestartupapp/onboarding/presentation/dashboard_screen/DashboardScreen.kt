@@ -1,7 +1,11 @@
 package com.muss_coding.smartagriculturestartupapp.onboarding.presentation.dashboard_screen
 
+import ImageButton
+import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -9,47 +13,46 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
-import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.muss_coding.smartagriculturestartupapp.R
 import com.muss_coding.smartagriculturestartupapp.onboarding.presentation.dashboard_screen.components.ControlCard
 import com.muss_coding.smartagriculturestartupapp.onboarding.presentation.dashboard_screen.components.GridWithCards
 import com.muss_coding.smartagriculturestartupapp.onboarding.presentation.dashboard_screen.components.MainInfoCard
 import com.muss_coding.smartagriculturestartupapp.onboarding.presentation.dashboard_screen.components.MonitoringCard
 import com.muss_coding.smartagriculturestartupapp.onboarding.presentation.dashboard_screen.utils.controlParameters
+import com.muss_coding.smartagriculturestartupapp.onboarding.presentation.dashboard_screen.utils.featureParameters
 import com.muss_coding.smartagriculturestartupapp.onboarding.presentation.dashboard_screen.utils.monitoringParameters
 
 @Composable
 fun DashboardScreen(
     modifier: Modifier = Modifier,
     background: Color = MaterialTheme.colorScheme.background,
-    viewModel: DashboardViewModel = hiltViewModel()
+    state: DashboardState,
+    enterNewScreen: () -> Unit,
+    onSelectFeature: (Int) -> Unit,
+    navigateToProfileScreen: () -> Unit,
+    updateControls: (Int, Boolean) -> Unit
 ) {
-    val state = viewModel.state
+    val sizePerRow = 2
+    val context = LocalContext.current
 
     Column(
         modifier = modifier
@@ -70,7 +73,11 @@ fun DashboardScreen(
             Icon(
                 imageVector = Icons.Default.AccountCircle,
                 contentDescription = stringResource(R.string.account_button_icon),
-                modifier = Modifier.size(30.dp)
+                modifier = Modifier
+                    .size(30.dp)
+                    .clickable {
+                        navigateToProfileScreen()
+                    }
             )
         }
         Text(
@@ -82,7 +89,8 @@ fun DashboardScreen(
 
         MainInfoCard(
             title = stringResource(R.string.app_title),
-            date = state.lastUpdated.toString(),
+            date = state.lastUpdated,
+            isLoading = state.isLoading
         )
 
         Text(
@@ -91,8 +99,6 @@ fun DashboardScreen(
             fontWeight = FontWeight.Bold,
             fontSize = 24.sp
         )
-
-        val sizePerRow = 2
 
         GridWithCards(
             sizePerRow = sizePerRow,
@@ -104,10 +110,13 @@ fun DashboardScreen(
                         title = item.title,
                         icon = painterResource(id = item.icon),
                         info = when (index) {
-                            0 -> state.waterTemperature
-                            1 -> state.waterPh
+                            0 -> "${state.waterTemperature}°C"
+                            1 -> state.weatherData?.humidity
                             2 -> state.soilMoisture
                             3 -> state.waterLevel
+                            4 -> state.weatherData?.pressure
+                            5 -> "${state.weatherData?.windSpeed} Km/h"
+                            6 -> "${state.weatherData?.windDirection}°"
                             else -> ""
                         }.toString()
                     )
@@ -139,21 +148,41 @@ fun DashboardScreen(
                             else -> false
                         }
                     ) {
-                        viewModel.onEvent(DashboardEvents.OnUpdateControlToggle(index, it))
+                        //viewModel.onEvent(DashboardEvents.OnUpdateControlToggle(index, it))
+                        updateControls(index, it)
                     }
                 }
             },
             state = state
         )
-        AnimatedVisibility(state.isSprinklingChecked) {
-            Button(onClick = { /*TODO*/ }, modifier = Modifier.fillMaxWidth()) {
-                Text(text = "Sprinkling")
-            }
-        }
         AnimatedVisibility(state.isWateringChecked) {
-            Button(onClick = { /*TODO*/ }, modifier = Modifier.fillMaxWidth()) {
-                Text(text = "Watering")
-            }
+            ImageButton(
+                imagePainter = painterResource(id = R.drawable.electric_water_pump_3),
+                buttonText = "Water Pump is on",
+                onClick = {
+                    Toast.makeText(context, "Water pump logic", Toast.LENGTH_SHORT).show()
+                }
+            )
+        }
+
+        Text(
+            text = "Features",
+            style = MaterialTheme.typography.labelLarge,
+            fontWeight = FontWeight.Bold,
+            fontSize = 24.sp
+        )
+
+        featureParameters.forEachIndexed { index, featureParameter ->
+            ImageButton(
+                modifier = if (state.isSprinklingChecked && index == 1)
+                    Modifier.border(5.dp, MaterialTheme.colorScheme.primary, RoundedCornerShape(16.dp))
+                        else Modifier,
+                imagePainter = painterResource(id = featureParameter.image),
+                buttonText = featureParameter.title,
+                onClick = {
+                    onSelectFeature(index)
+                }
+            )
         }
     }
 }

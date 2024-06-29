@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cl_black"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".Report">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="Collected Data"
+        android:textColor="@color/cl_green"
+        android:textSize="30dp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:src="@drawable/logo" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/table_border">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Parameter"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:background="@drawable/cell_border" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Value"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:background="@drawable/cell_border" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Nitrogen Reading"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:background="@drawable/cell_border" />
+
+            <TextView
+                android:id="@+id/nValueDisplay"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:background="@drawable/cell_border" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Phosphorous Reading"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:background="@drawable/cell_border" />
+
+            <TextView
+                android:id="@+id/pValueDisplay"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:background="@drawable/cell_border" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Potassium Reading"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:background="@drawable/cell_border" />
+
+            <TextView
+                android:id="@+id/kValueDisplay"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:background="@drawable/cell_border" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Temperature Reading"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:background="@drawable/cell_border" />
+
+            <TextView
+                android:id="@+id/tempValueDisplay"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:background="@drawable/cell_border" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Humidity Reading"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:background="@drawable/cell_border" />
+
+            <TextView
+                android:id="@+id/humidityValueDisplay"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:background="@drawable/cell_border" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="PH Reading"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:background="@drawable/cell_border" />
+
+            <TextView
+                android:id="@+id/phValueDisplay"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:background="@drawable/cell_border" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Rainfall Reading"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:background="@drawable/cell_border" />
+
+            <TextView
+                android:id="@+id/rainfallValueDisplay"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:background="@drawable/cell_border" />
+        </TableRow>
+
+        <!-- Repeat similar TableRow elements for other parameters -->
+
+    </TableLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/table_border">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Suggested Crop"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:background="@drawable/cell_border" />
+
+            <TextView
+                android:id="@+id/suggestedCropValueDisplay"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:background="@drawable/cell_border" />
+        </TableRow>
+    </TableLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/table_border">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Predicted MSP In 2025"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:background="@drawable/cell_border" />
+
+            <TextView
+                android:id="@+id/predictedMSP"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:background="@drawable/cell_border" />
+        </TableRow>
+    </TableLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:cardCornerRadius="8dp"
+        android:background="@color/cl_black">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:backgroundTint="@color/cl_black">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Have a question?"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/askQuestionButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ask a Question"
+                android:background="@color/cl_green"
+                android:textColor="@color/white"
+                android:padding="10dp"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
