@@ -25,3 +25,4 @@ rootProject.name = "SmartAgricultureStartUpApp"
 include(":app")
 include(":soil_type")
 include(":crop_recommendation")
+include(":irrigation")

@@ -75,6 +75,7 @@ dependencies {
     implementation(project(":soil_type"))
     implementation(project(":soil_type"))
     implementation(project(":crop_recommendation"))
+    implementation(project(":irrigation"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

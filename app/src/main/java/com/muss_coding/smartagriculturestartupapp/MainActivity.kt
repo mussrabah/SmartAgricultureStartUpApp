@@ -30,12 +30,12 @@ import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
+import com.muss_coding.irrigation.IrrigationActivity
 import com.muss_coding.smartagriculturestartupapp.onboarding.presentation.dashboard_screen.DashboardEvents
 import com.muss_coding.smartagriculturestartupapp.onboarding.presentation.dashboard_screen.DashboardScreen
 import com.muss_coding.smartagriculturestartupapp.onboarding.presentation.dashboard_screen.DashboardViewModel
 import com.muss_coding.smartagriculturestartupapp.onboarding.presentation.profile_screen.ProfileScreen
 import com.muss_coding.smartagriculturestartupapp.ui.theme.SmartAgricultureStartUpAppTheme
-import com.muss_coding.soil_type.SoilClassificationActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -72,8 +72,8 @@ class MainActivity : ComponentActivity() {
                                         }
 
                                         1 -> {
-                                            intent.setPackage("com.example.greenstems") // Package name of the other app
-                                            intent.setClassName("com.example.greenstems", "com.example.greenstems.SplashScreen")
+                                            val intentIrrigation = Intent(this@MainActivity, IrrigationActivity::class.java)
+                                            startActivity(intentIrrigation)
                                         }
 
                                         2 -> {

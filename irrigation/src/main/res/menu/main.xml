@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app = "http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id = "@+id/circle"
+        app:showAsAction = "never"
+        android:title="Draw Circle"/>
+
+    <item
+        android:id = "@+id/coordinates"
+        app:showAsAction = "never"
+        android:title="Show Coordinates"/>
+
+    <item
+        android:id="@+id/sprinklers"
+        app:showAsAction="always"
+        android:title="Plot Sprinklers"
+        />
+    <item
+        android:id="@+id/calculate"
+        app:showAsAction="never"
+        android:title="Show Feedback"
+        />
+    <!--<item
+        android:id="@+id/autoplot"
+        app:showAsAction="never"
+        android:title="Autoplot Sprinklers"
+        />
+-->
+
+</menu>

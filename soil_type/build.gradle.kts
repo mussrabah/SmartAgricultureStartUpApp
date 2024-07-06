@@ -51,6 +51,8 @@ dependencies {
 
     // Or use Picasso
     implementation("com.squareup.picasso:picasso:2.8")
+    testImplementation(libs.junit.junit)
+    testImplementation(libs.junit.junit)
 
     // ... testing dependencies (replace with AndroidX test dependencies)
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

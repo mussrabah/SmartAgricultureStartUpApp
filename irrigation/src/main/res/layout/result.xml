@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="20sp">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff">
+
+        <RelativeLayout
+            android:id="@+id/titleContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="#DFFFDA">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="6sp"
+                android:fontFamily="@font/ralewaysemibold"
+                android:paddingBottom="4sp"
+                android:text="Additional Info"
+                android:textColor="#000"
+                android:textSize="31sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <!-- <TextView
+             android:id="@+id/generalstatisticstitle"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_below="@+id/titleContainer"
+             android:layout_marginLeft="15sp"
+             android:layout_marginTop="10sp"
+             android:fontFamily="@font/ralewayregular"
+             android:text="@string/general"
+             android:textColor="#5D815D"
+             android:textSize="25sp"
+             android:textStyle="bold" />-->
+
+        <RelativeLayout
+            android:id="@+id/questions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/titleContainer"
+            android:layout_marginTop="10sp">
+
+            <TextView
+                android:id="@+id/messageT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18sp"
+                android:layout_marginTop="2sp"
+                android:layout_marginRight="6sp"
+                android:fontFamily="@font/ralewayregular"
+                android:text="Before your results are displayed, please enter the following information."
+                android:textColor="#597E59"
+                android:textSize="18sp" />
+
+            <!--  <ImageView
+                  android:layout_width="17sp"
+                  android:layout_height="17sp"
+                  android:layout_below="@id/messageT"
+                  android:layout_marginTop="28sp"
+                  android:layout_marginLeft="5sp"
+                  android:src="@drawable/helpicon"
+                  />-->
+
+            <TextView
+                android:id="@+id/amtText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/messageT"
+                android:layout_marginLeft="27sp"
+                android:layout_marginTop="23sp"
+                android:layout_marginRight="10sp"
+                android:text="Amount of water used per sprinkler per minute:"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/waterused"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/amtText"
+                android:layout_marginLeft="30sp"
+                android:layout_marginTop="-6sp"
+                android:ems="4"
+                android:hint=""
+                android:text=""
+                android:inputType="numberDecimal"
+                android:textColor="#000"
+                android:textColorHint="#A1B48A" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/amtText"
+                android:layout_marginLeft="3sp"
+                android:layout_marginTop="7sp"
+                android:layout_toRightOf="@id/waterused"
+                android:text="gpm"
+                android:textColor="#000"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/durText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/waterused"
+                android:layout_marginLeft="27sp"
+                android:layout_marginTop="23sp"
+                android:layout_marginRight="10sp"
+                android:text="# of minutes sprinklers in use per week:"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/durText"
+                android:layout_marginLeft="30sp"
+                android:layout_marginTop="-7sp"
+                android:ems="4"
+                android:text=""
+                android:hint=""
+                android:inputType="number"
+                android:textColor="#000"
+                android:textColorHint="#A1B48A" />
+
+            <TextView
+                android:id="@+id/minutes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/durText"
+                android:layout_marginLeft="3sp"
+                android:layout_marginTop="9sp"
+                android:layout_toRightOf="@id/waterused"
+                android:text="minutes"
+                android:textColor="#000"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/soilTypeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/duration"
+                android:layout_marginLeft="27sp"
+                android:layout_marginTop="25sp"
+                android:text="Soil Type: "
+                android:textSize="17sp" />
+
+            <Spinner
+                android:id="@+id/soilType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/duration"
+                android:layout_marginLeft="6sp"
+                android:layout_marginTop="26sp"
+                android:layout_marginBottom="20sp"
+                android:layout_toRightOf="@+id/soilTypeText"
+                android:entries="@array/soil_types" />
+
+            <ImageView
+                android:id="@+id/headhelp"
+                android:layout_width="18sp"
+                android:layout_height="18sp"
+                android:layout_below="@+id/soilType"
+                android:layout_marginLeft="4sp"
+                android:layout_marginTop="0sp"
+                android:src="@drawable/helpicon" />
+
+            <CheckBox
+                android:id="@+id/head"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/soilType"
+                android:layout_marginLeft="22sp"
+                android:layout_marginTop="-7sp"
+                android:buttonTint="#000"
+                android:text=" Head to Head Coverage"
+                android:textColor="#757575"
+                android:textSize="17sp" />
+
+            <!--
+                        <Button
+                            android:id="@+id/continueBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/soilTypeText"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="50sp"
+                            android:paddingLeft="35sp"
+                            android:paddingTop="7sp"
+                            android:paddingRight="35sp"
+                            android:paddingBottom="7sp"
+                            android:text="Continue"
+                            android:textAllCaps="false"
+                            android:textColor="#347918"
+                            android:textSize="23sp" />
+
+                        <Button
+                            android:id="@+id/backBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/continueBtn"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="15sp"
+                            android:paddingLeft="35sp"
+                            android:paddingTop="7sp"
+                            android:paddingRight="35sp"
+                            android:paddingBottom="7sp"
+                            android:text="Back"
+                            android:textAllCaps="false"
+                            android:textColor="#347918"
+                            android:textSize="23sp" />-->
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/questions"
+            android:layout_marginTop="15sp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/goBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="98"
+                android:background="#010500"
+                android:text="Back"
+                android:textAllCaps="true"
+                android:textColor="#fff"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/done"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="103"
+                android:background="#4A973A"
+                android:text="Continue"
+                android:textAllCaps="true"
+                android:textColor="#fff"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

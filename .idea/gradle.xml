@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/crop_recommendation" />
+            <option value="$PROJECT_DIR$/irrigation" />
             <option value="$PROJECT_DIR$/soil_type" />
           </set>
         </option>
