@@ -7,55 +7,129 @@ import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
 import android.os.Looper
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
+import androidx.activity.result.IntentSenderRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.content.ContextCompat.startActivity
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
+import com.google.android.gms.auth.api.identity.Identity
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
-import com.muss_coding.irrigation.IrrigationActivity
 import com.muss_coding.smartagriculturestartupapp.onboarding.presentation.dashboard_screen.DashboardEvents
 import com.muss_coding.smartagriculturestartupapp.onboarding.presentation.dashboard_screen.DashboardScreen
 import com.muss_coding.smartagriculturestartupapp.onboarding.presentation.dashboard_screen.DashboardViewModel
 import com.muss_coding.smartagriculturestartupapp.onboarding.presentation.profile_screen.ProfileScreen
+import com.muss_coding.smartagriculturestartupapp.sign_in_out.presentation.signin.GoogleAuthUiClient
+import com.muss_coding.smartagriculturestartupapp.sign_in_out.presentation.signin.SignInScreen
+import com.muss_coding.smartagriculturestartupapp.sign_in_out.presentation.signin.SignInViewModel
 import com.muss_coding.smartagriculturestartupapp.ui.theme.SmartAgricultureStartUpAppTheme
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    private val googleAuthUiClient by lazy {
+        GoogleAuthUiClient(
+            context = applicationContext,
+            oneTapClient = Identity.getSignInClient(applicationContext)
+        )
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             SmartAgricultureStartUpAppTheme {
+                val navHostController = rememberNavController()
+                val isThereSignedInUser = googleAuthUiClient.getSignedInUser() != null
+                val dashboardViewModel: DashboardViewModel = hiltViewModel()
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    val dashboardViewModel: DashboardViewModel = hiltViewModel()
                     RequestLocationPermissionAndFetchWeather(dashboardViewModel)
-                    val navController = rememberNavController()
                     NavHost(
-                        navController = navController,
-                        startDestination = "dashboard"
+                        navController = navHostController,
+                        startDestination = if (isThereSignedInUser) "dashboard" else "sign_in"
                     ) {
+                        composable(route = "sign_in") {
+                            val viewModel = hiltViewModel<SignInViewModel>()
+                            val state by viewModel.state.collectAsStateWithLifecycle()
+
+                            val launcher = rememberLauncherForActivityResult(
+                                contract = ActivityResultContracts.StartIntentSenderForResult(),
+                                onResult = {result ->
+                                    if (result.resultCode == RESULT_OK) {
+                                        lifecycleScope.launch {
+                                            val signInResult = googleAuthUiClient.signInWithIntent(
+                                                intent = result.data ?: return@launch
+                                            )
+                                            viewModel.onSignInResult(signInResult)
+                                        }
+                                    }
+                                }
+                            )
+
+                            LaunchedEffect(key1 = state.isSignInSuccessful) {
+                                if (state.isSignInSuccessful) {
+                                    Toast.makeText(
+                                        applicationContext,
+                                        "Sign in successful",
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                    //navHostController.navigate(route = Route.MAIN_NOTES_VIEW)
+                                    navHostController.navigate("dashboard") {
+                                        popUpTo("sign_in") {
+                                            inclusive = true
+                                        }
+                                    }
+                                    viewModel.resetState()
+                                }
+
+                            }
+                            SignInScreen(
+                                signInState = state,
+                                onSignInClick = {
+                                    Log.d("Acc", "Begin Sign In")
+                                    lifecycleScope.launch {
+                                        val signInIntentSender = googleAuthUiClient.signIn()
+                                        launcher.launch(
+                                            IntentSenderRequest.Builder(
+                                                signInIntentSender ?: return@launch
+                                            ).build()
+                                        )
+                                    }
+                                    Log.d("Acc", "End Sign In")
+                                },
+                                onSignUpClick = {
+                                    //navHostController.navigate(Route.SIGN_UP)
+                                }
+                            )
+                        }
                         composable("dashboard") {
                             DashboardScreen(
                                 state = dashboardViewModel.state.collectAsState().value,
@@ -72,7 +146,7 @@ class MainActivity : ComponentActivity() {
                                         }
 
                                         1 -> {
-                                            val intentIrrigation = Intent(this@MainActivity, IrrigationActivity::class.java)
+                                            val intentIrrigation = Intent(this@MainActivity, com.muss_coding.irrigation.IrrigationActivity::class.java)
                                             startActivity(intentIrrigation)
                                         }
 
@@ -84,7 +158,7 @@ class MainActivity : ComponentActivity() {
                                     //startActivity(this@MainActivity, intent, null)
                                 },
                                 navigateToProfileScreen = {
-                                    navController.navigate("profile")
+                                    navHostController.navigate("profile")
                                 },
                                 enterNewScreen = {
                                     //app.ij.errigation
@@ -96,12 +170,15 @@ class MainActivity : ComponentActivity() {
                                 },
                                 updateControls = { index, isChecked ->
                                     dashboardViewModel.onEvent(DashboardEvents.OnUpdateControlToggle(index, isChecked))
-                                }
+                                },
+                                userData = googleAuthUiClient.getSignedInUser()
                             )
                         }
 
                         composable("profile") {
-                            ProfileScreen()
+                            ProfileScreen(
+                                userData = googleAuthUiClient.getSignedInUser()
+                            )
                         }
                     }
                 }

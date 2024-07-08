@@ -14,17 +14,15 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -32,6 +30,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import com.muss_coding.smartagriculturestartupapp.R
 import com.muss_coding.smartagriculturestartupapp.onboarding.presentation.dashboard_screen.components.ControlCard
 import com.muss_coding.smartagriculturestartupapp.onboarding.presentation.dashboard_screen.components.GridWithCards
@@ -40,6 +39,7 @@ import com.muss_coding.smartagriculturestartupapp.onboarding.presentation.dashbo
 import com.muss_coding.smartagriculturestartupapp.onboarding.presentation.dashboard_screen.utils.controlParameters
 import com.muss_coding.smartagriculturestartupapp.onboarding.presentation.dashboard_screen.utils.featureParameters
 import com.muss_coding.smartagriculturestartupapp.onboarding.presentation.dashboard_screen.utils.monitoringParameters
+import com.muss_coding.smartagriculturestartupapp.sign_in_out.presentation.signin.UserData
 
 @Composable
 fun DashboardScreen(
@@ -49,7 +49,8 @@ fun DashboardScreen(
     enterNewScreen: () -> Unit,
     onSelectFeature: (Int) -> Unit,
     navigateToProfileScreen: () -> Unit,
-    updateControls: (Int, Boolean) -> Unit
+    updateControls: (Int, Boolean) -> Unit,
+    userData: UserData?
 ) {
     val sizePerRow = 2
     val context = LocalContext.current
@@ -70,25 +71,26 @@ fun DashboardScreen(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(text = stringResource(R.string.hello))
-            Icon(
-                imageVector = Icons.Default.AccountCircle,
+            AsyncImage(
+                model = userData?.profilePictureUrl,
                 contentDescription = stringResource(R.string.account_button_icon),
                 modifier = Modifier
                     .size(30.dp)
+                    .clip(CircleShape)
                     .clickable {
                         navigateToProfileScreen()
                     }
             )
         }
         Text(
-            text = state.userName,
+            text = userData?.userName ?: "",
             style = MaterialTheme.typography.labelLarge,
             fontWeight = FontWeight.Bold,
             fontSize = 24.sp
         )
 
         MainInfoCard(
-            title = stringResource(R.string.app_title),
+            title = stringResource(R.string.app_name),
             date = state.lastUpdated,
             isLoading = state.isLoading
         )

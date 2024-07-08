@@ -1,8 +1,11 @@
 <resources>
-    <string name="app_name">SmartAgricultureStartUpApp</string>
+    <string name="app_name">FILAHATY</string>
     <string name="hello">Hello,</string>
     <string name="account_button_icon">Account Button</string>
     <string name="app_title">Smart Agriculture</string>
     <string name="monitoring">Monitoring</string>
     <string name="control">Control</string>
+    <string name="web_client_id">511903407805-70s5c55n2du7pvp0e7dmhlg6fvicsb3p.apps.googleusercontent.com</string>
+    <string name="agriculture_image">agriculture</string>
+    <string name="profile_picture">profile picture for signed in user</string>
 </resources>

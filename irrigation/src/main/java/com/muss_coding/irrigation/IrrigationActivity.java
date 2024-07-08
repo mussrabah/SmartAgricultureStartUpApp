@@ -85,7 +85,7 @@ public class IrrigationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d("MainActivity", "Setting content view to activity_main");
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_irrigation);
 
         // Initialize animations
         fadeIn = new AlphaAnimation(0, 1);
@@ -136,15 +136,15 @@ public class IrrigationActivity extends AppCompatActivity {
         button = findViewById(R.id.button);
         background = findViewById(R.id.layout);
         radius = findViewById(R.id.seekBar);
-        textview = display;
-        ft = findViewById(R.id.ft);
-        length = findViewById(R.id.length);
-        angleText = findViewById(R.id.adjustAngleText);
-        rotateText = findViewById(R.id.rotateSprinklerText);
-        left1 = findViewById(R.id.leftAngle1);
-        left2 = findViewById(R.id.leftAngle2);
-        right1 = findViewById(R.id.rightAngle1);
-        right2 = findViewById(R.id.rightAngle2);
+        textview = background.findViewById(R.id.textViewDisplay);
+        ft = background.findViewById(R.id.ft);
+        length = background.findViewById(R.id.length);
+        angleText = background.findViewById(R.id.adjustAngleText);
+        rotateText = background.findViewById(R.id.rotateSprinklerText);
+        left1 = background.findViewById(R.id.leftAngle1);
+        left2 = background.findViewById(R.id.leftAngle2);
+        right1 = background.findViewById(R.id.rightAngle1);
+        right2 = background.findViewById(R.id.rightAngle2);
         btnUndo = findViewById(R.id.btnUndo);
 
         Log.d("MainActivity", "Other views initialized");
@@ -152,7 +152,7 @@ public class IrrigationActivity extends AppCompatActivity {
         setButtonClick();
         setRadiusBar();
         dv.sradius = radius.getProgress();
-        container = findViewById(R.id.container);
+        container = background.findViewById(R.id.container);
         lengthUpdater();
 
         radius.getProgressDrawable().setColorFilter(Color.parseColor("#70c48c"), PorterDuff.Mode.SRC_IN);

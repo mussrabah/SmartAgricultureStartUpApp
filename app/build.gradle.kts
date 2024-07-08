@@ -76,6 +76,7 @@ dependencies {
     implementation(project(":soil_type"))
     implementation(project(":crop_recommendation"))
     implementation(project(":irrigation"))
+    implementation(libs.androidx.lifecycle.runtime.compose.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

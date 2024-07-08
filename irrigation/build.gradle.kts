@@ -36,12 +36,12 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    implementation("androidx.appcompat:appcompat:1.4.0") // Updated artifact
-    implementation("androidx.constraintlayout:constraintlayout:2.1.3") // Updated artifact
-    testImplementation("junit:junit:4.13.2") // Updated artifact
-    androidTestImplementation("androidx.test:runner:1.4.0") // Updated artifact
-    implementation("androidx.cardview:cardview:1.0.0") // No change needed for CardView
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0") // Updated artifact
+    implementation(libs.androidx.appcompat.v140) // Updated artifact
+    implementation(libs.androidx.constraintlayout) // Updated artifact
+    testImplementation(libs.junit) // Updated artifact
+    androidTestImplementation(libs.androidx.runner) // Updated artifact
+    implementation(libs.androidx.cardview) // No change needed for CardView
+    androidTestImplementation(libs.androidx.espresso.core.v340) // Updated artifact
     implementation(libs.androidx.monitor)
     implementation(libs.androidx.junit.ktx)
 }

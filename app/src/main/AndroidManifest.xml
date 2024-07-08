@@ -111,7 +111,7 @@
 
         <activity android:name="com.muss_coding.irrigation.IrrigationActivity"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
         </activity>
 
 
